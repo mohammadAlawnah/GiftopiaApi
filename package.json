@@ -1,0 +1,30 @@
+{
+  "name": "giftopia",
+  "version": "1.0.0",
+  "description": "Giftopia is an AI-powered e-commerce platform that simplifies finding the perfect gifts for various occasions. Leveraging web scraping, it curates a selection of products from global e-commerce sites, applying a 10% markup to the listed price.The backend supports a dynamic Home page and dedicated event pages, employing AI techniques and data analysis with libraries like pandas and numpy to filter and display products. It features an intuitive search mechanism allowing users to find gifts based on descriptive input, a dashboard for admin operations, and an order management system for processing purchases. The site caters to different user roles, including customers, staff, and administrators, providing a tailored experience for browsing, managing orders, and overseeing the platform.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "engines": {
+    "node": "18.18.2"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "joi": "^17.13.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.2",
+    "multer": "^1.4.5-lts.1",
+    "nanoid": "^5.0.7",
+    "nodemailer": "^6.9.13"
+  }
+}
