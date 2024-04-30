@@ -17,6 +17,9 @@ const router = Router();
 router.post('/addAdmin',admin,userControllar.addAdmin)
 router.post('/addStaff',userControllar.addStaf)
 
+router.put('/editPassword',auth,userControllar.editPassword)
+router.put('/editInformation',auth,userControllar.editInformation)
+router.put('/updateEmail',auth,userControllar.updateEmail)
 
 // router.post('/forgetPassword',userControllar.forgetPassword)
 // router.post('/resetPassword',userControllar.resetPassword)
