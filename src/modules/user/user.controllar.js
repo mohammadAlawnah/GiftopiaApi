@@ -40,9 +40,35 @@ export const addStaf = async(req,res)=>{
 
     if(staff.modifiedCount>0){
         const updateUser = await userModel.findOne({_id:user._id})
-        return res.json({message : updateUser})
+    return res.json({message : updateUser})
     }
 }
+export const editPassword =async(req,res)=>{
+    const {currentPassword,newPassword} = req.body;
+    const User = await userModel.findOne({_id:user._id})
+    const CheckPassword = await bcrypt.compare(currentPassword,User.password);
+    if(CheckPassword){
+        const hashPassword = await bcrypt.hash(password,parseInt(process.env.SALT_ROUND))
+        const user =await userModel.updateOne({_id:req.user._id},{password:hashPassword})
+        return res.json({message:'update password has been sucesed'})
+    }
+}
+
+export const updateEmail =async(req,res)=>{
+    const {Email} = req.body;
+const user =await userModel.updateOne({_id:req.user._id},{Email})
+return res.json({message:'update email has been sucesed'})
+}
+
+export const editInformation =async(req,res)=>{
+    const {userName,age,phone,gender} = req.body;
+const user =await userModel.updateOne({_id:req.user._id},{userName,age,phone,gender})
+return res.json({message:'update email has been sucesed'})
+}
+
+
+
+
 
 // export const displayGeneralUser = async(req,res)=>{
 //     const users = await userModel.find({role:'admin'});
