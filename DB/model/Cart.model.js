@@ -2,21 +2,21 @@ import mongoose, { model } from "mongoose";
 
 const {Schema} = mongoose;
 
-const CartSchwma = new Schema({
+const CartSchema = new Schema({
     userId  : {
         type : String,
         require : true,
     },
-    productId : [{
+    products : [{
+        productId : { 
         type : String,
         require : true,
         unique : true,
-    }],
+    },
     quantity :{
         type : Number,
         require : true,
-
-    },
+    }}],
     totalPrice  : {
         type : Number,
         require : true,
@@ -26,6 +26,6 @@ const CartSchwma = new Schema({
     timestamps : true
 })
 
-const cartModel = model('User',CartSchwma)
+const cartModel = model('Cart',CartSchema)
 
 export default cartModel;
