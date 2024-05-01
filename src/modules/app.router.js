@@ -4,6 +4,8 @@ import userRouter from './user/user.router.js'
 import locationRouter from './location/location.router.js'
 import cors from 'cors'
 import productRouter from './product/product.router.js'
+import commentAndReviewRouter from './commentsAndReview/commentReview.router.js';
+
 
 export const initApp = (app,express)=>{
 
@@ -21,6 +23,8 @@ export const initApp = (app,express)=>{
     app.use('/user',userRouter)
     app.use('/location',locationRouter)
     app.use('/product',productRouter)
+    app.use('/commentAndReview',commentAndReviewRouter)
+
 
     // app.use('/user',userRouter)
     app.use('*',(req,res)=>{
