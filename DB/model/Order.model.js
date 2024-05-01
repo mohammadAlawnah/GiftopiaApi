@@ -2,27 +2,35 @@ import mongoose, { Types, model } from "mongoose";
 
 const {Schema} = mongoose;
 
-const OrderSchwma = new Schema({
-    userId  : {
-        type : Types.ObjectId,
-        ref:'User',
+const OrderSchema = new Schema({
+    userId: {
+        type: Types.ObjectId,
+        ref: 'User',
     },
-    productId  : [{
-        type : Types.ObjectId,
-        ref : 'User'
+    orderTracking: [{
+        productTracking: {
+            product: {
+                type: Types.ObjectId,
+                ref: 'Product'
+            },
+            status: {
+                type: String,
+                enum: ['processing', 'shipping', 'enroute', "arrived"],
+                default: 'processing'
+            },
+            timeRemaining: {
+                type: String
+            }
+        }
     }],
+    totalPrice: {
+        type: Number,
+        
+    }
+}, {
+    timestamps: true
+});
 
-    totalPrice:{
-        type : Boolean,
-        default : false
+const orderModel = model('Order', OrderSchema);
 
-    },
-
-
-},{
-    timestamps : true
-})
-
-const userModel = model('User',UserSchwma)
-
-export default userModel;
+export default orderModel;
