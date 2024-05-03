@@ -5,22 +5,18 @@ import admin from "../../middleware/admin.middleware.js";
 
 const router = Router();
 
+router.get('/displayGeneralUser', admin, userControllar.displayGeneralUser);
+router.get('/displayAdmin', admin, userControllar.displayAdmin);
+router.put('/updateUserById', admin, userControllar.updateUserById);
 
-// router.get('/displayGeneralUser',admin,userControllar.displayGeneralUser)
 
-
-
-// router.get('/displayStaff',admin,userControllar.displayStaff)
-// router.get('/displayAdmin',admin,userControllar.displayAdmin)
+router.post('/addFriend', userControllar.addFriend);
+// router.put('/updateFriendById', admin, userControllar.updateFriendById);
+router.get('/displayFriend', userControllar.displayFriend);
+router.delete('/deleteFriendById', userControllar.deleteFriendById);
 
 
 router.post('/addAdmin',admin,userControllar.addAdmin)
 router.post('/addStaff',userControllar.addStaf)
-
-
-// router.post('/forgetPassword',userControllar.forgetPassword)
-// router.post('/resetPassword',userControllar.resetPassword)
-// router.put('/updatePassword',userControllar.updatePassword)
-
 
 export default router
