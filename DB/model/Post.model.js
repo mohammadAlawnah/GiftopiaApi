@@ -13,11 +13,10 @@ const PostSchema = new Schema({
     },
     content: {
         type: String,
-        required: true
+        required: true,
     },
     image:{
         type:String,
-        required:true,
     },
     createdAt: {
         type: Date,
