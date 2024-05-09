@@ -30,6 +30,6 @@ const ProductSchwma = new Schema({
     timestamps : true
 })
 
-const productModel = model('User',ProductSchwma)
+const productModel = model('Product',ProductSchwma)
 
 export default productModel;
