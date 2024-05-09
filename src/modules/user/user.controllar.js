@@ -2,7 +2,6 @@ import e from "express";
 import userModel from "../../../DB/model/User.model.js";
 import bcrypt from 'bcryptjs'
 export const addAdmin = async(req,res)=>{
-
     const {email} = req.body;
 
     const user = await userModel.findOne({email});
@@ -71,7 +70,6 @@ export const addUser = async(req,res)=>{
 
 
 export const displayStaff = async(req,res)=>{
-    
         const users = await userModel.find({role:'staff'});
         res.json({message:'sucsess',users})
 }
@@ -89,11 +87,10 @@ export const displayStaff = async(req,res)=>{
 // }
 
 export const updatePassword = async(req,res)=>{
-    const id = req.params;
-    const {password} = req.body;
+    const {email,password} = req.body;
 
     const hashPassword = await bcrypt.hash(password,parseInt(process.env.SALT_ROUND))
 
-    const updatepassword = await userModel.findOneAndUpdate({userId:id},{password:updatepassword})
+    const updatepassword = await userModel.findOneAndUpdate({email:email},{password:hashPassword})
     return res.json({message : updatepassword})
 }

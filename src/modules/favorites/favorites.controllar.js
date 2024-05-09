@@ -6,7 +6,7 @@ import productModel from '../../../DB/model/Product.model.js'
 
 export const addFavorites = async(req,res)=>{
     
-    const {UserId} = req.body;
+    const {UserId} = req.user._id;
     const newFavoriteUserModel = await userModel.findOne({UserId});
     //const newFavoriteProductModel = await productModel.findOne({ProductId});
     if(!newFavoriteUserModel){
