@@ -1,9 +1,8 @@
 import postModel from "../../../DB/model/Post.model.js";
 
 export const addNewPost = async(req,res)=>{
-    try {
-        const {userId, title, content, image} = req.body;
-        const newPost = new postModel({userId, title, content, image});
+        const {title, content, image} = req.body;
+        const newPost = new postModel({userId:req.user._id, title, content, image});
 
         if (!newPost){
             return res.status(404).send('New post not found');
@@ -11,15 +10,9 @@ export const addNewPost = async(req,res)=>{
             await newPost.save();
             return res.status(200).send('New post successfully added')
         }
-
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).send('Internal Server Error');
-    }
 };
 
 export const displayAllPosts = async(req,res)=>{
-    try {
         const allPosts = await postModel.find();
         
         if (!allPosts || allPosts.length === 0){
@@ -27,14 +20,19 @@ export const displayAllPosts = async(req,res)=>{
         }else{
             return res.status(200).json(allPosts);
         }
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).send('Internal Server Error');
+};
+
+export const displayUserAllPosts = async(req,res)=>{
+    const allUserPosts = await postModel.find({userId:req.user._id});
+    
+    if (!allUserPosts || allUserPosts.length === 0){
+        return res.status(404).send('User dose not have any Posts');
+    }else{
+        return res.status(200).json(allUserPosts);
     }
 };
 
 export const updatePost = async(req,res)=>{
-    try {
         const {_id, title, content, image} = req.body;
         const postToUpdate = await postModel.findOne({_id: _id}) 
 
@@ -48,15 +46,9 @@ export const updatePost = async(req,res)=>{
             );
             return res.status(200).send('Post successfully updated');
         }
-
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).send('Internal Server Error');
-    }
 };
 
 export const deletePost = async(req,res)=>{
-    try {
         const {_id} = req.body;
         const postToDelete = await postModel.findOne({_id: _id}) 
 
@@ -67,9 +59,4 @@ export const deletePost = async(req,res)=>{
             await postModel.deleteOne({_id});
             return res.status(200).send('Post successfully deleted');
         }
-
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).send('Internal Server Error');
-    }
 };
