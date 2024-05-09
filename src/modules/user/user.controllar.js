@@ -1,5 +1,6 @@
 import e from "express";
 import userModel from "../../../DB/model/User.model.js";
+import bcrypt from 'bcryptjs' 
 export const addAdmin = async(req,res)=>{
 
     const {email} = req.body;
@@ -45,10 +46,10 @@ export const addStaf = async(req,res)=>{
 }
 export const editPassword =async(req,res)=>{
     const {currentPassword,newPassword} = req.body;
-    const User = await userModel.findOne({_id:user._id})
+    const User = await userModel.findOne({_id:req.user._id})
     const CheckPassword = await bcrypt.compare(currentPassword,User.password);
     if(CheckPassword){
-        const hashPassword = await bcrypt.hash(password,parseInt(process.env.SALT_ROUND))
+        const hashPassword = await bcrypt.hash(newPassword,parseInt(process.env.SALT_ROUND))
         const user =await userModel.updateOne({_id:req.user._id},{password:hashPassword})
         return res.json({message:'update password has been sucesed'})
     }
@@ -56,14 +57,14 @@ export const editPassword =async(req,res)=>{
 
 export const updateEmail =async(req,res)=>{
     const {Email} = req.body;
-const user =await userModel.updateOne({_id:req.user._id},{Email})
-return res.json({message:'update email has been sucesed'})
+    const user =await userModel.updateOne({_id:req.user._id},{email:Email})
+    return res.json({message:'update email has been sucesed'})
 }
 
 export const editInformation =async(req,res)=>{
     const {userName,age,phone,gender} = req.body;
 const user =await userModel.updateOne({_id:req.user._id},{userName,age,phone,gender})
-return res.json({message:'update email has been sucesed'})
+return res.json({message:'update information has been sucesed'})
 }
 
 
