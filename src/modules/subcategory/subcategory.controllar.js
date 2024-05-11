@@ -42,3 +42,12 @@ export const create = async(req,res)=>{
 
    return res.json({message : subcategoriy}) 
 }
+
+export const getAll = async(req,res)=>{
+    const {id} = req.params;//Category Id 
+
+    const categories = await subcategoryModel.find({categoryId:id}); // يوجد كل ال sub category لل categoryId
+
+    return res.status(200).json({message : categories})
+
+}

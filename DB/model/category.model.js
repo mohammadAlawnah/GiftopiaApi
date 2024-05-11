@@ -28,8 +28,19 @@ const categorySchema = new Schema({
         type:Types.ObjectId,
         ref:'User',
     }
+},{
+    timestamps : true,
+    toJSON : {virtuals:true},
+    toObject:{virtuals:true}
 })
 
-const categoryModel = model('category',categorySchema);
+categorySchema.virtual("subcategory",{
+    localField : '_id', // الي بالجدول عننا 
+    foreignField : 'categoryId', // الاشي المربوط بجدول ال سب كاتيجوري 
+    ref : 'Subcategory', // // اسم جدول السب كاتيجوري
+})
+
+
+const categoryModel = model('Category',categorySchema);
 
 export default categoryModel;
