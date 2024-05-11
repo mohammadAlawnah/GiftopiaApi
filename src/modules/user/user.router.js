@@ -1,7 +1,8 @@
 import { Router } from "express";
 import * as userControllar from './user.controllar.js'
-import auth from "../../middleware/auth.middleware.js";
+import { auth } from "../../middleware/auth.middleware.js";
 import admin from "../../middleware/admin.middleware.js";
+import { endPoint } from "./user.role.js";
 
 const router = Router();
 
@@ -14,8 +15,8 @@ const router = Router();
 // router.get('/displayAdmin',admin,userControllar.displayAdmin)
 
 
-router.post('/addAdmin',admin,userControllar.addAdmin)
-router.post('/addStaff',userControllar.addStaf)
+router.post('/addAdmin',auth(endPoint.add),userControllar.addAdmin)
+router.post('/addStaff',auth(endPoint.add),userControllar.addStaf)
 
 
 // router.post('/forgetPassword',userControllar.forgetPassword)
