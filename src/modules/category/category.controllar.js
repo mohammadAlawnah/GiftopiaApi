@@ -11,7 +11,7 @@ export const create = async(req,res)=>{
     }
 
     const {secure_url,public_id} = await cloudinary.uploader.upload(req.file.path,{
-        folder : 'Giftopia/categories'
+        folder : `${process.env.APPNAME}/categories`
     })
 
     const slug = slugify(name)
