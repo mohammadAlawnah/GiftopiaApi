@@ -23,3 +23,22 @@ export const create = async(req,res)=>{
     return res.json({message:category})
 
 }
+
+export const getAll = async(req,res)=>{
+
+
+    const categories = await categoryModel.find({}).populate([
+    {
+        path : "createdBy",
+        select : 'userName',
+    },
+    {
+        path : 'updateBy',
+        select : 'userName , email',
+    },
+    {
+        path : 'subcategory',
+    }
+]);
+    return res.status(200).json({message : categories})
+}
