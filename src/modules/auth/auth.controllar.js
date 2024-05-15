@@ -525,7 +525,7 @@ export const  signIn= async(req,res)=>{
         if(CheckPassword){
             const token = jwt.sign({id:user._id,email:user.email},process.env.LOGING_GIFTOPIA)
 
-            return res.status(200).json({message : "seccess", token})
+            return res.status(200).json({message : "seccess", token,role:user.role})
         }
         return res.status(401).json('Invalid password')
     }
