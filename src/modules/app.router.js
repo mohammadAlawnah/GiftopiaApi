@@ -4,6 +4,7 @@ import userRouter from './user/user.router.js'
 import locationRouter from './location/location.router.js'
 import categoryRouter from './category/category.router.js'
 import subcategorie from './subcategory/subcategory.router.js'
+import productRouter from './product/product.router.js'
 import cors from 'cors'
 
 export const initApp = (app,express)=>{
@@ -22,6 +23,7 @@ export const initApp = (app,express)=>{
     app.use('/location',locationRouter)
     app.use('/category',categoryRouter)
     app.use('/subcategorie',subcategorie)
+    app.use('/product',productRouter)
 
 
     // app.use('/user',userRouter)

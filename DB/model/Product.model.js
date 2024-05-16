@@ -1,35 +1,76 @@
-import mongoose, { model } from "mongoose";
-const {Schema} = mongoose;
-const ProductSchwma = new Schema({
-    title : {
+import mongoose, { Schema, Types, model } from "mongoose";
+const productSchema = new Schema({
+    name : {
         type : String,
-        require : true,
+        unique : true,
+        require:true,
+        trim : true,  
     },
-    description : {
+
+    slug : {
         type : String,
-        require : true,
-    },
-    price :{
-        type : Number,
         require : true,
     },
 
-    occasion : {
+    description:{
         type : String,
+        require:true,
+    },
+
+    stock : {
+        type : Number,
+        default : 1,
+    },
+
+    price:{
+        type : Number,
+        require:true,
+    },
+    discount:{
+        type : Number,
+        default :0,
+    },
+    finalPrice:{
+        type:Number,
+    },
+    mainImage:{
+        type : Object,
+        require:true,
+    },
+    subImages:[{
+        type : Object,
+    }],
+
+    status : {
+        type : String,
+        default : 'Active',
+        enum :['Active','NotActive'],
+    },
+    sizez :{
+        type : String,
+        enum:['s','m','lg','xl']
+    },
+    colors:[String],
+
+    categoryId:{
+        type:Types.ObjectId,
+        ref:'Category',
+        require:true,
+    },
+
+    subcategoryId:{
+        type : Types.ObjectId,
+        ref : 'Subcategory',
         require : true,
     },
-    imageUrl  : {
-        type : String,
-        require : true,
-    },
-    sourceUrl : {
-        type : String,
-        require : true,
-    },
+
+    createdBy : {type:Types.ObjectId,ref:'User'},
+    updatedBy : {type:Types.ObjectId,ref:'User'},
+
 },{
-    timestamps : true
+    timestamps : true,
 })
 
-const productModel = model('User',ProductSchwma)
 
+const productModel = model('Product',productSchema)
 export default productModel;
