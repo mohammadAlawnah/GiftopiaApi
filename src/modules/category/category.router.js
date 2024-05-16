@@ -13,10 +13,10 @@ const router = Router();
 router.use('/:id/subcategory',subcategoryRouter)
 router.post('/',auth(endPoint.create),fileUpload(fileType.image).single('image'),categoryControllar.create)
 router.get('/',auth(endPoint.get),categoryControllar.getAll)
-router.get('/active',auth(endPoints.get),categoryControllar.getActive)
+router.get('/active',auth(endPoint.get),categoryControllar.getActive)
 router.get('/:id',categoryControllar.getCategory)
-router.patch('/:id',auth(endPoints.create),fileUpload(filleType.image).single('image'),categoryControllar.updateCategory)
-router.delete('/:id',auth(endPoints.delete),categoryControllar.destroy)
+router.patch('/:id',auth(endPoint.create),fileUpload(fileType.image).single('image'),categoryControllar.updateCategory)
+router.delete('/:id',auth(endPoint.delete),categoryControllar.destroy)
 
 
 
