@@ -1,0 +1,6 @@
+import {roles} from "../../middleware/auth.middleware.js"
+
+export const endPoints ={
+    create:[roles.GeneralUser],
+    delete:[roles.GeneralUser]
+}

@@ -1,10 +1,14 @@
 import { Router } from "express";
 import * as cartControllar from './cart.controllar.js'
-const router = Router();
+import { auth, roles } from "../../middleware/auth.middleware.js";
+import { endPoints } from "./cart.role.js";
 
-router.patch('/incrementItemQuantityInCart',cartControllar.incrementItemQuantityInCart);
-router.patch('/decrementItemQuantityInCart',cartControllar.decrementItemQuantityInCart);
-router.delete('/removeItemFromCart',cartControllar.removeItemFromCart);
-router.post('/addItemToCart',cartControllar.addItemToCart);
+const router = Router({caseSensitive:true});
+
+router.get('/',auth(endPoints.create),cartControllar.get)
+router.post('/',auth(endPoints.delete),cartControllar.create);
+router.put('/clear',auth(endPoints.delete),cartControllar.clearCart);
+router.put('/updateQuantity/:productId',auth(endPoints.create),cartControllar.updateQuantity)
+router.put('/:productId',auth(endPoints.delete),cartControllar.remove);
 
 export default router;
