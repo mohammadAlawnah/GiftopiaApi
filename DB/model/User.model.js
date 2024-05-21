@@ -1,3 +1,4 @@
+import { required } from "joi";
 import mongoose, { model } from "mongoose";
 
 const {Schema} = mongoose;
@@ -44,6 +45,14 @@ const UserSchwma = new Schema({
     image : {
         type : Object,
     },
+    // LastSeen: {
+    //     type: Date,
+    // }
+    // addBy: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "User",
+    //     // required: true,
+    // }
 
 },{
     timestamps : true

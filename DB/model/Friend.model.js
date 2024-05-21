@@ -1,15 +1,22 @@
-import mongoose, { model } from "mongoose";
+//import { types } from "joi";
+//import { required } from "joi";
+import mongoose, { Mongoose, model } from "mongoose";
 
 const {Schema} = mongoose;
 
 const FriendSchema = new Schema({
-    id: {
-        type: String,
-        require: true,
-    },
+    // id: {
+    //     type: String,
+    //     required: true,
+    // },
     name: {
         type: String,
-        require: true,
+        required: true,
+    },
+    addBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        // required: true,
     }
 });
 

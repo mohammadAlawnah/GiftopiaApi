@@ -49,7 +49,7 @@ export const addStaf = async(req,res)=>{
 
 export const displayGeneralUser = async (req, res) => {
     try {
-        const users = await userModel.find({ role: 'generalUser' });
+        const users = await userModel.find({ role: 'GeneralUser' });
         res.status(200).json({ message: 'sucsess', users });
     }
     catch (error) {
@@ -134,11 +134,48 @@ export const updateUserById = async (req, res) => {
 };
 
 
+export const deleteAdminById = async (req, res) => {
+    try {
+        const admin = await userModel.findById(req.params.id);
+        if (admin) {
+            await userModel.findByIdAndDelete(req.params.id);
+            res.status(200).json({ message: "Admin deleted successfully" });
+        }
+        else {
+            res.status(404).json({ message: "Admin not found" });
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Somthing went wrong" });
+    }
+};
+
+
+export const deleteUserById = async (req, res) => {
+    try {
+        const user = await userModel.findById(req.params.id);
+        if (user) {
+            await userModel.findByIdAndDelete(req.params.id);
+            res.status(200).json({ message: "User deleted successfully" });
+        }
+        else {
+            res.status(404).json({ message: "User not found" });
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Somthing went wrong" });
+    }
+};
+
+
 export const addFriend = async (req, res) => {
     try {
-        const friend = new Friend({
+        const friend = new friendModel({
             id: req.body.id,
             name: req.body.name,
+            addBy: req.user._id.toString(),
         });
         const result = await friend.save();
         res.status(201).json(friend);
@@ -152,7 +189,7 @@ export const addFriend = async (req, res) => {
 
 // export const updateFriendById = async (req, res) => {
 //     try {
-//         const friend = await Friend.findByIdAndUpdate(req.params.id, {
+//         const friend = await friendModel.findByIdAndUpdate(req.params.id, {
 //             $set: {
 //                 id: req.body.id,
 //                 name: req.body.name,
@@ -173,7 +210,7 @@ export const addFriend = async (req, res) => {
 
 export const displayFriend = async (req, res) => {
     try {
-        const friendList = await Friend.find();
+        const friendList = await friendModel.find();
         res.status(200).json(friendList);
     }
     catch (error) {
@@ -185,7 +222,7 @@ export const displayFriend = async (req, res) => {
 
 // export const displayFriendById = async (req, res) => {
 //     try {
-//         const friend = await Friend.findById(req.params.id);
+//         const friend = await friendModel.findById(req.params.id);
 //         if (friend) {
 //             res.status(200).json(friend);
 //         }
@@ -202,9 +239,9 @@ export const displayFriend = async (req, res) => {
 
 export const deleteFriendById = async (req, res) => {
     try {
-        const friend = await Friend.findById(req.params.id);
+        const friend = await friendModel.findById(req.params.id);
         if (friend) {
-            await Friend.findByIdAndDelete(req.params.id);
+            await friendModel.findByIdAndDelete(req.params.id);
             res.status(200).json({ message: "Friend deleted successfully" });
         }
         else {
@@ -218,4 +255,26 @@ export const deleteFriendById = async (req, res) => {
 };
 
 
+// export const displayUserFreined = async (req, res) => {
+//     try {
+//         const friends = await friendModel.find().populate('addBy', 'name');
+//         res.status(200).send(req.user);
+//     }
+//     catch (error) {
+//         res.status(500).send({ message: "Somthing went wrong" });
+//     }
+// };
 
+
+// export const deleteInactiveUsers = async (req, res) => {
+//     try {
+//         const sixMonthsInactive = new Date();
+//         sixMonthsInactive.setMonth(sixMonthsInactive.getMonth() - 6);
+//         const result = await User.deleteMany({ lastSeen: { $lt: sixMonthsInactive } });
+//         res.status(200).send({ message: "Deleted Successfully" });
+//     }
+//     catch (error) {
+//         console.log(error);
+//         res.status(500).json({ message: "Somthing went wrong" });
+//     }
+// };
