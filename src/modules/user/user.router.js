@@ -19,7 +19,7 @@ router.post('/addFriend', auth(endPoint.add), userControllar.addFriend);
 // router.put('/updateFriendById', auth(endPoint.update), userControllar.updateFriendById);
 router.get('/displayFriend', auth(endPoint.get), userControllar.displayFriend);
 router.delete('/deleteFriendById', auth(endPoint.destroy), userControllar.deleteFriendById);
-router.get('/displayUserFreined', auth(endPoint.get), userControllar.displayUserFreined);
+//router.get('/displayUserFreined', auth(endPoint.get), userControllar.displayUserFreined);
 
 
 // router.delete('/deleteInactiveUsers', auth(endPoint.destroy), userControllar.deleteInactiveUsers);
