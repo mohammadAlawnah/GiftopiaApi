@@ -1,6 +1,11 @@
-import mongoose, { model } from "mongoose";
+import mongoose, { Types, model } from "mongoose";
 const {Schema} = mongoose;
 const ProductSchwma = new Schema({
+
+    userId  : {
+        type : Types.ObjectId,
+        ref:'User',
+    },
     title : {
         type : String,
         require : true,

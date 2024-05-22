@@ -1,4 +1,4 @@
-import productModel from '../../../DB/model/Product.model.js'
+import productModel from '../../../DB/model/AiProduct.model.js'
 
 
 export const addProduct =async(req,res)=>{
@@ -25,6 +25,6 @@ export const deleteProduct =async(req,res)=>{
 export const editProduct = async(req,res)=>{
     const { title, description, price, occasion, imageUrl, sourceUrl } = req.body;
 
-    const product = await ProductModel.updateOne({userId:req.user._id},{ title, description, price, occasion, imageUrl, sourceUrl})
+    const product = await productModel.updateOne({userId:req.user._id},{ title, description, price, occasion, imageUrl, sourceUrl})
     return res.json({message:product});
 }
