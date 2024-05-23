@@ -6,6 +6,7 @@ import categoryRouter from './category/category.router.js'
 import subcategorie from './subcategory/subcategory.router.js'
 import productRouter from './product/product.router.js'
 import cartRouter from './cart/cart.router.js'
+import wishlistRouter from './wishlist/wishlist.router.js'
 import cors from 'cors'
 
 export const initApp = (app,express)=>{
@@ -25,7 +26,8 @@ export const initApp = (app,express)=>{
     app.use('/category',categoryRouter)
     app.use('/subcategorie',subcategorie)
     app.use('/product',productRouter)
-    app.use('/cart',cartRouter)
+    app.use('/cart', cartRouter)
+    app.use('/wishlist', wishlistRouter)
 
 
     // app.use('/user',userRouter)
