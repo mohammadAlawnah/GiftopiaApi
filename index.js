@@ -3,11 +3,11 @@ import 'dotenv/config'
 import { initApp } from './src/modules/app.router.js';
 const app = express();
 
-const PORT = process.env.PORT || 6060 ;
+const PORT = process.env.PORT || 6060;
 
 
-initApp(app,express)
+initApp(app, express)
 
-app.listen(PORT,()=>{
-    console.log(`server is running on port ${PORT}`)
+app.listen(PORT, () => {
+  console.log(`server is running on port ${PORT}`)
 })

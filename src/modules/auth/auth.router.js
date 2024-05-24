@@ -4,7 +4,7 @@ const router = Router();
 
 router.post('/signUp',authControllar.signUp);
 router.post('/signIn',authControllar.signIn);
-router.get('/co/:token',authControllar.confarmEmail)
+router.get('/co',authControllar.confarmEmail)
 
 
 export default router

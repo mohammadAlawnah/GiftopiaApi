@@ -510,27 +510,28 @@ export const signUp = async(req,res)=>{
     return res.status(201).json({message : 'success', newUser})
 }
 
-export const  signIn= async(req,res)=>{
+export const signIn= async(req,res)=>{
 
     const {email,password} = req.body;
+    console.log(email)
     const user = await userModel.findOne({email});
-
+    console.log(password)
     if(user){
-        if(!user.confarmEmail){
-            return res.status(403).json({message : "please confirm your email"})
-        }
+        // if(!user.confarmEmail){
+        //     return res.status(403).json({message : "please confirm your email"})
+        // }
 
         const CheckPassword = await bcrypt.compare(password,user.password);
 
         if(CheckPassword){
-            const token = jwt.sign({id:user._id,email:user.email},process.env.LOGING_GIFTOPIA)
+            const token = jwt.sign({id:user._id,email:user.email},process.env.LOGING_GIFTOPIA, {expiresIn:'1h'})
 
             return res.status(200).json({message : "seccess", token})
         }
         return res.status(401).json('Invalid password')
     }
     
-    return res.status(404).json('Invalid user')
+    return res.status(404).json('Invalid 77')
 }
 
 
@@ -538,7 +539,7 @@ export const confarmEmail = async(req,res)=>{
     const {token} = req.params
 
     const decoded = jwt.verify(token,process.env.EmailTokin)
-
+    
     const user = await userModel.findOneAndUpdate({email:decoded.email},{confarmEmail:true},{new:true})
 
     if(user.modifiedCount>0){
@@ -546,9 +547,4 @@ export const confarmEmail = async(req,res)=>{
     }
     return res.json({message:"success",user})
 
-}
-
-
-export const dd = async(req,res)=>{
-    res.json({message : 'dafor'})
 }

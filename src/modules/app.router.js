@@ -2,7 +2,9 @@ import { connectDB } from '../../DB/connection.js';
 import authRouter from './auth/auth.router.js'
 import userRouter from './user/user.router.js'
 import locationRouter from './location/location.router.js'
+import brandRouter from './brand/brand.router.js';
 import cors from 'cors'
+import coponRouter from'./copon/copon.router.js'
 
 export const initApp = (app,express)=>{
 
@@ -14,11 +16,11 @@ export const initApp = (app,express)=>{
     app.use(express.json());
     
 
-    
-
     app.use('/auth',authRouter)
     app.use('/user',userRouter)
     app.use('/location',locationRouter)
+    app.use('/brand',brandRouter)
+app.use('/copon',coponRouter)
 
 
     // app.use('/user',userRouter)

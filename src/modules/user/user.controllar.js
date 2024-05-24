@@ -1,5 +1,7 @@
 import e from "express";
+import bcrypt from 'bcryptjs' // تشفير
 import userModel from "../../../DB/model/User.model.js";
+import jwt from 'jsonwebtoken'
 export const addAdmin = async(req,res)=>{
 
     const {email} = req.body;
@@ -40,9 +42,35 @@ export const addStaf = async(req,res)=>{
 
     if(staff.modifiedCount>0){
         const updateUser = await userModel.findOne({_id:user._id})
-        return res.json({message : updateUser})
+    return res.json({message : updateUser})
     }
 }
+export const editPassword =async(req,res)=>{
+    const {currentPassword,newPassword} = req.body;
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token,process.env.LOGING_GIFTOPIA)
+    const user = await userModel.findOne({email:decodedToken.email});
+    const CheckPassword = await bcrypt.compare(currentPassword,user.password);
+    if(CheckPassword){
+        const hashPassword = await bcrypt.hash(newPassword,parseInt(process.env.SALT_ROUND))
+        const updatedUser =await userModel.updateOne({_id: user._id},{password:hashPassword})
+        return res.json({message:'Update password has been succeeded'})
+    }
+}
+
+export const updateEmail =async(req,res)=>{
+   const {Email} = req.body;
+ const user =await userModel.updateOne({_id:req.user._id},{Email})
+ return res.json({message:'update email has been sucesed'})
+}
+
+export const editInformation =async(req,res)=>{
+    const {userName,age,phone,gender} = req.body;
+const user =await userModel.updateOne({_id:req.user._id},{userName,age,phone,gender})
+return res.json({message:'update information has been sucesed'})
+}
+
+
 
 // export const displayGeneralUser = async(req,res)=>{
 //     const users = await userModel.find({role:'admin'});
