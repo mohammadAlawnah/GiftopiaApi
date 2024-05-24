@@ -17,6 +17,7 @@ export const displayBrand = async (req, res) => {
     return res.json({ message: name })
 }
 
+
 export const editBrand = async (req, res) => {
     const { name, newName } = req.body;
     const brand = await BrandModel.findOne({ name })

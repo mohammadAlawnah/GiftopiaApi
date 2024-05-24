@@ -21,6 +21,7 @@ router.post('/updateEmail',userControllar.updateEmail)
 router.post('/editInformation',userControllar.editInformation)
 
 
+
 // router.post('/forgetPassword',userControllar.forgetPassword)
 // router.post('/resetPassword',userControllar.resetPassword)
 // router.put('/updatePassword',userControllar.updatePassword)

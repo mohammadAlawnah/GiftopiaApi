@@ -14,6 +14,7 @@ const BrandSchema = new Schema({
         type : Number,
     },
     })
+    
 
 const BrandModel = model('Brand',BrandSchema)
 

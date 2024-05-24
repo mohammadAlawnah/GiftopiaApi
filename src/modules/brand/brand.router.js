@@ -9,4 +9,5 @@ router.get('/displayBrand',brandControllar.displayBrand)
 router.post('/addBrand',brandControllar.addBrand)
 router.post('/deleteBrand',brandControllar.deleteBrand)
 
+
 export default router;

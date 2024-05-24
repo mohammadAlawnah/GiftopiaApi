@@ -18,6 +18,7 @@ export const createCopon = async (req, res) => {
     }
 }
 
+
 export const getCopon = async (req, res) => {
     const { name, value } = req.body;
     const Copon = await CoponModel.findOne({ name }, { name, value })

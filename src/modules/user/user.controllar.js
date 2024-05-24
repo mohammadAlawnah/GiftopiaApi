@@ -16,6 +16,7 @@ export const addAdmin = async(req,res)=>{
     if(user.role == 'admin'){
         return res.json({message:'the user role is alridy admin'})
     }
+    
 
     
     const admin = await userModel.updateOne({_id:user._id},{role:"admin"})

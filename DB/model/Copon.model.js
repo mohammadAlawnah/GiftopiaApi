@@ -10,6 +10,7 @@ const CoponSchema = new Schema({
         type : Number,
     },
     })
+    
 
 const CoponModel = model('Copon',CoponSchema)
 
