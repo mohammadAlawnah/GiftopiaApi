@@ -1,0 +1,8 @@
+DB = 'mongodb+srv://ReemaSamer:Reema@giftopia.qduiwvv.mongodb.net'
+#DB = 'mongodb://127.0.0.1:27017'
+SALT_ROUND = 6
+LOGING_GIFTOPIA = HIGIFTOPIA
+BEARERKEY = 'Giftopia__'
+emailsender = "alawnah.moohamad@gmail.com"
+passwordsender = "ybat ahml rdty mwva"
+EmailTokin = "GIFTOPIACONFIG123"
