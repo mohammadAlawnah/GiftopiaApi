@@ -1,4 +1,4 @@
-import auth from '../../middleware/auth.middleware.js';
+import {auth} from '../../middleware/auth.middleware.js';
 import * as CommentReviewController from './commentReview.controllar.js'
 import { Router } from "express";
 

@@ -8,4 +8,4 @@ router.post('/addProduct', admin, aiProductControllar.addProduct)
 router.delete('/deleteProduct', admin, aiProductControllar.deleteProduct)
 router.put('/editProduct', admin, aiProductControllar.editProduct)
 
-export default router
+export default router;

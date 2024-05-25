@@ -21,7 +21,7 @@ export const initApp = (app,express)=>{
     app.use('/auth',authRouter)
     app.use('/user',userRouter)
     app.use('/location',locationRouter)
-    app.use('/product',productRouter)
+    app.use('/aiproduct',productRouter)
     app.use('/commentAndReview',commentAndReviewRouter)
 
 

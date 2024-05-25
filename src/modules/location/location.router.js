@@ -1,4 +1,4 @@
-import auth from '../../middleware/auth.middleware.js';
+import {auth} from '../../middleware/auth.middleware.js';
 import * as locationControllar from './location.controllar.js'
 import { Router } from "express";
 const router = Router();

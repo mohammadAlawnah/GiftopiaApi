@@ -7,7 +7,7 @@ export const addlocation=async(req,res)=>{
     const id = req.user._id;
 
     const addloc = await locationModel.create({ country, city, street, userId:id})
-    res.json({message: addloc})
+    return res.json({message: addloc})
 }
 
 export const displayLocation = async(req,res)=>{

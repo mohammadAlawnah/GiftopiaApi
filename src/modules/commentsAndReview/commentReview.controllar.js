@@ -1,6 +1,5 @@
 import commentAndReviewModel from '../../../DB/model/ComentReview.model.js';
 
-
 export const addCommentAndReview=async(req,res)=>{
 
     const { comment, review } = req.body;
@@ -8,7 +7,7 @@ export const addCommentAndReview=async(req,res)=>{
     const userName = req.userName;
 
     const addcomm = await commentAndReviewModel.create({ comment, review, userId:id, userName:userName})
-    res.json({message: addcomm})
+    return res.json({message: addcomm})
 }
 
 export const displayCommentAndReview = async(req,res)=>{

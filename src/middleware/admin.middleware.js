@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import userModel from '../../DB/model/User.model.js'
+
 const admin = async (req,res,next)=>{
 
     const {authorization} = req.headers
