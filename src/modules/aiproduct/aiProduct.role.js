@@ -1,8 +1,7 @@
-import  { roles }  from "../../middleware/admin.middleware";
+import   roles   from "../../middleware/admin.middleware.js";
 
 export const endPoint = {
-
-    add : [roles.Admin],
-    update : [roles.Admin],
-    delete : [roles.Admin]
+    create: [roles.Admin, roles.Staff],
+    delete: [roles.Admin],
+    update: [roles.Admin, roles.Staff]
 }
