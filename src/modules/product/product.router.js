@@ -11,4 +11,8 @@ router.post('/',auth(endPoint.create),fileUpload(fileType.image).fields([
     {name:'subImages',maxCount:5},
 ]),productControllar.create);
 
+
+router.get('/displayTopProduct',productControllar.displayTopProduct)
+router.get('/searchProduct',productControllar.searchProduct)
+router.post('/BuyingForFriend',productControllar.BuyingForFriend)
 export default router

@@ -525,7 +525,7 @@ export const  signIn= async(req,res)=>{
         if(CheckPassword){
             const token = jwt.sign({id:user._id,email:user.email},process.env.LOGING_GIFTOPIA)
 
-            return res.status(200).json({message : "seccess", token,role:user.role})
+            return res.status(200).json({message : "seccess", token})
         }
         return res.status(401).json('Invalid password')
     }
@@ -551,4 +551,27 @@ export const confarmEmail = async(req,res)=>{
 
 export const dd = async(req,res)=>{
     res.json({message : 'dafor'})
+}
+
+export const resetPassword = async(req,res)=>{
+
+    const email = req.body.email;
+    const user = await userModel.findOne({email})
+    if(user){
+
+   //     await sendEmail(email,`confarmEmail`,ff)
+
+
+        const {newPassword, confarmPassword} = req.body
+        if(newPassword === confarmPassword){
+            const hashPassword = await bcrypt.hash(newPassword,parseInt(process.env.SALT_ROUND))
+            await userModel.findByIdAndUpdate(user,{password:hashPassword})
+            return res.json({message: 'reset passaword'})
+        }
+        else{
+         return res.json({message:'Password mismatch'})
+        }
+    }else{
+        return res.json({message: 'user not found'})
+    }
 }
