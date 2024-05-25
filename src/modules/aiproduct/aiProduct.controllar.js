@@ -4,7 +4,7 @@ export const addProduct = async (req, res) => {
 
     try {
         const { title, description, price, occasion, imageUrl, sourceUrl } = req.body;
-        const id = req.user_id;
+        const id = req.user._id;
         
         const addprod = await productModel.create({ title, description, price, occasion, imageUrl, sourceUrl, userId: id });
 

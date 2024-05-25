@@ -4,7 +4,7 @@ export const addlocation=async(req,res)=>{
 
     try {
         const { country, city, street } = req.body;
-        const id = req.user_id;
+        const id = req.user._id;
 
         const addloc = await locationModel.create({ country, city, street, userId:id });
 

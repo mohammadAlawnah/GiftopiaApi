@@ -4,7 +4,7 @@ export const addCommentAndReview = async (req, res) => {
 
     try {
         const { comment, review } = req.body;
-        const id = req.user_id;
+        const id = req.user._id;
         const userName = req.userName;
 
         const addcomm = await commentAndReviewModel.create({ comment, review, userId: id, userName: userName });
