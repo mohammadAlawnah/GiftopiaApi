@@ -1,5 +1,6 @@
 import locationModel from "../../../DB/model/Location.model.js";
 
+// Function to add user location (ReemaKusa)
 export const addlocation=async(req,res)=>{
 
     try {
@@ -18,6 +19,7 @@ export const addlocation=async(req,res)=>{
     }
 }
 
+// Function to display the location (ReemaKusa)
 export const displayLocation = async(req,res)=>{
 
     try {
@@ -33,6 +35,7 @@ export const displayLocation = async(req,res)=>{
     }
 }
 
+// Function to update the location (ReemaKusa)
 export const updateLocation = async(req,res)=>{
 
     try {

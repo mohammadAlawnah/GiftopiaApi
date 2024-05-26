@@ -1,5 +1,6 @@
 import commentAndReviewModel from '../../../DB/model/ComentReview.model.js';
 
+// Function to add comment and review (ReemaKusa)
 export const addCommentAndReview = async (req, res) => {
 
     try {
@@ -19,6 +20,7 @@ export const addCommentAndReview = async (req, res) => {
     }
 }
 
+// Function to display comment and review (ReemaKusa)
 export const displayCommentAndReview = async (req, res) => {
 
     try {
@@ -35,6 +37,7 @@ export const displayCommentAndReview = async (req, res) => {
 
 }
 
+// Function to update comment and review (ReemaKusa)
 export const updateCommentAndReview = async (req, res) => {
 
     try {
@@ -51,10 +54,11 @@ export const updateCommentAndReview = async (req, res) => {
     }
 }
 
+// Function to delete comment and review (ReemaKusa)
 export const deleteCommentAndReview = async (req, res) => {
 
     try {
-        //const { comment, review } = req.body;
+        const { comment, review } = req.body;
         const id = req.user._id;
         //const id = req.user_id;
 

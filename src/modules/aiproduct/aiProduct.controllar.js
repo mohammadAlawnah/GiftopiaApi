@@ -1,5 +1,6 @@
 import productModel from '../../../DB/model/AiProduct.model.js';
 
+// Function to add a new product (ReemaKusa)
 export const addProduct = async (req, res) => {
 
     try {
@@ -19,7 +20,7 @@ export const addProduct = async (req, res) => {
 
 }
 
-
+// Function to delete product (ReemaKusa)
 export const deleteProduct = async (req, res) => {
 
     try {
@@ -37,7 +38,7 @@ export const deleteProduct = async (req, res) => {
     }
 }
 
-
+// Function to edit the product info (ReemaKusa)
 export const editProduct = async (req, res) => {
     
     try {
