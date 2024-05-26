@@ -3,6 +3,7 @@ import authRouter from './auth/auth.router.js'
 import userRouter from './user/user.router.js'
 import cartRouter from './cart/cart.router.js'
 import postRouter from './post/post.router.js'
+import categoryRouter from './category/category.router.js'
 
 import cors from 'cors'
 
@@ -22,6 +23,7 @@ export const initApp = (app,express)=>{
     app.use('/user',userRouter)
     app.use('/post',postRouter)
     app.use('/cart',cartRouter)
+    app.use('/category',categoryRouter)
 
 
     // app.use('/user',userRouter)
