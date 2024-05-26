@@ -1,5 +1,6 @@
 import categoryModel from "../../../DB/model/category.model.js";
 
+//this code written by muawiya ismail-->
 export const displayAllCategories = async(req,res)=>{
     const allCategories = await categoryModel.find();
         
@@ -8,9 +9,9 @@ export const displayAllCategories = async(req,res)=>{
     }else{
         return res.status(200).json(allCategories);
     }
-}
+}//<--
 
-
+//this code written by muawiya ismail-->
 export const deleteCategory= async(req,res)=>{
     const categoryToDelete = await categoryModel.findOne({name:req.body.name});
         
@@ -20,8 +21,9 @@ export const deleteCategory= async(req,res)=>{
         await categoryModel.deleteOne({name:req.body.name});
         return res.status(200).json('Category successfully deleted');
     }
-}
+}//<--
 
+//this code written by muawiya ismail-->
 export const addNewCategory = async(req,res)=>{
     const categoryToAdd = await categoryModel.findOne({name:req.body.name.toLowerCase()});
     if(categoryToAdd){
@@ -30,7 +32,7 @@ export const addNewCategory = async(req,res)=>{
         await categoryModel.create({name:req.body.name.toLowerCase(),createdBy:req.user._id,updateBy:req.user._id})
         return res.status(200).json('Category successfully added');       
     }
-};
+};//<--
 
 
 

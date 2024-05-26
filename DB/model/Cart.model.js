@@ -1,5 +1,6 @@
 import mongoose, { Schema, Types, model } from "mongoose";
 
+//this code written by muawiya ismail-->
 const cartSchema = new Schema({
     userId : {
         type:Types.ObjectId,
@@ -17,4 +18,4 @@ const cartSchema = new Schema({
 
 const CartModel = model('Cart',cartSchema);
 
-export default CartModel;
+export default CartModel;//<--

@@ -21,9 +21,10 @@ export const initApp = (app,express)=>{
 
     app.use('/auth',authRouter)
     app.use('/user',userRouter)
+    //this code written by muawiya ismail-->
     app.use('/post',postRouter)
     app.use('/cart',cartRouter)
-    app.use('/category',categoryRouter)
+    app.use('/category',categoryRouter)//<--
 
 
     // app.use('/user',userRouter)

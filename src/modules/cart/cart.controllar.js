@@ -1,10 +1,14 @@
 import cartModel from "../../../DB/model/Cart.model.js";
+
+//this written mad by muawiya ismail-->
 export const get =async(req,res)=>{
     const cart = await cartModel.findOne({userId:req.user._id});
 
     return res.json({message : 'succses' , product : cart.products})
 }
+//<--
 
+//this written mad by muawiya ismail-->
 export const create = async(req,res)=>{
 
     const {productId} = req.body;
@@ -31,7 +35,9 @@ export const create = async(req,res)=>{
     await cart.save();
     return res.json({message : 'success',cart});
 }
+//<--
 
+//this written mad by muawiya ismail-->
 export const remove = async(req,res)=>{
 
     const {productId} = req.params;
@@ -51,7 +57,9 @@ export const remove = async(req,res)=>{
 
     return res.json({message:'success',cart})
 }
+//<--
 
+//this written mad by muawiya ismail-->
 export const updateQuantity = async(req,res)=>{
 
     const {quantity,operator} = req.body;
@@ -90,7 +98,9 @@ export const updateQuantity = async(req,res)=>{
         return res.json({ message: "product removed", cart: updatedCart });
     }
 }
+//<--
 
+//this written mad by muawiya ismail-->
 export const clearCart = async(req,res)=>{
     const cart  = await cartModel.findOneAndUpdate({
         userId:req.user._id,
@@ -102,4 +112,4 @@ export const clearCart = async(req,res)=>{
 }
 )
 return res.json({message : 'done'})
-}
+}//<--
