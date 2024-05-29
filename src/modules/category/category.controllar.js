@@ -32,6 +32,7 @@ export const create = async (req, res) => {
   return res.json({ message: category });
 };
 
+//This code was created by Rajaa
 export const getAll = async (req, res) => {
   const categories = await categoryModel.find({}).populate([
     {
@@ -48,6 +49,8 @@ export const getAll = async (req, res) => {
   ]);
   return res.status(200).json({ message: categories });
 };
+
+//This code was created by Rajaa
 export const getActive = async (req, res) => {
   const categories = await categoryModel
     .find({ status: "Active" }.select("name"))
@@ -67,6 +70,7 @@ export const getActive = async (req, res) => {
   return res.status(200).json({ message: categories });
 };
 
+//This code was created by Rajaa
 export const getCategory = async (req, res) => {
   const { id } = req.params;
   const category = await categoryModel.findById(id).populate([
@@ -85,6 +89,7 @@ export const getCategory = async (req, res) => {
   return res.status(200).json({ message: category });
 };
 
+//This code was created by Rajaa
 export const updateCategory = async (req, res) => {
   const { id } = req.params;
   const categorie = await categoryModel.findById(id);
@@ -117,6 +122,8 @@ export const updateCategory = async (req, res) => {
   await categorie.save();
   return res.json({ message: "succesess", categorie });
 };
+
+//This code was created by Rajaa
 export const destroy = async (req, res) => {
   const categorie = await categoryModel.findByIdAndDelete(req.params.id);
   if (!categorie) {
