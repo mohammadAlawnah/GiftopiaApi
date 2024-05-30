@@ -1,28 +1,72 @@
-import mongoose, { Types, model } from "mongoose";
+import mongoose, { Schema, Types, model } from "mongoose";
 
-const {Schema} = mongoose;
-
-const OrderSchwma = new Schema({
-    userId  : {
-        type : Types.ObjectId,
-        ref:'User',
+const orderSchema = new Schema({
+    userId : {
+        type:Types.ObjectId,
+        ref : 'User',
+        required : true,
     },
-    productId  : [{
-        type : Types.ObjectId,
-        ref : 'User'
+    products : [{
+        productId :{type:Types.ObjectId,ref:'Product',required : true},
+        quantity:{type:Number,default:1},
+        unitPrice:{
+            type:Number,
+            required:true,
+        },
+        finalPrice : {
+            type:Number,
+            required:true,
+        }
     }],
+   
 
-    totalPrice:{
-        type : Boolean,
-        default : false
-
+    finalPrice:{
+        type : Number,
+        required : true,
     },
+    address:{
+        type : String,
+        required:true,
+    },
+    phoneNumber:{
+        type : String,
+        required:true,
+    },
+    paymentType:{
+        type:String,
+        enum:['cash','cart'],//visa cart
+        default:'cash'
+    },
+    coponId:{
+        type:Types.ObjectId,
+        ref:'Coupon'
+    },
+    status:{
+        type:String,
+        default:'panding',
+        enum : ['pending','cancelled','confirmed','onway','delivered'],
+    },
+    notes:{
+        type:String,
+    },
+    rejectedReason:{
+        type:String//اذا رفض الطلب ليش رفضه 
+    },
+    updatedBy:{
+        type:Types.ObjectId,
+        ref:'User',
+        required:true,
+    }
 
+},
+{
+    timestamps:true,
 
-},{
-    timestamps : true
-})
+}
+);
 
-const userModel = model('User',UserSchwma)
+    
 
-export default userModel;
+const OrderModel = model('Order',orderSchema);
+
+export default OrderModel;

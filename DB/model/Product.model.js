@@ -57,6 +57,7 @@ const productSchema = new Schema({
         ref: 'Subcategory',
         required: true,
     },
+ 
     createdBy: { type: Types.ObjectId, ref: 'User' },
     updatedBy: { type: Types.ObjectId, ref: 'User' },
     rate: {
@@ -71,3 +72,6 @@ const productSchema = new Schema({
 
 const productModel = model('Product', productSchema);
 export default productModel;
+
+
+
