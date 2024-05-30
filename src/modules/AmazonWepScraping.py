@@ -60,7 +60,7 @@ def extract_info_from_cards(cards):
         price_fraction = card.find('span', {'class': 'a-price-fraction'})
         if price_tag and price_fraction:
             price = price_tag.text.strip() + '.' + price_fraction.text.strip()
-            price = float(price.replace(',', '').replace('..', '.'))  # تحويل السعر إلى float وإزالة الفواصل إن وجدت
+            price = float(price.replace(',', '').replace('..', '.'))  
         else:
             price = None
 
@@ -248,15 +248,12 @@ def webScraping(url , ocr):
 
 #     sorted_products = handled_data.sort_values(by='Review Count', ascending=False)
 
-#     # الاتصال بقاعدة البيانات وإدخال البيانات
 #     client = MongoClient('mongodb+srv://mohamadAlawnah:mohammad123@giftopia.qduiwvv.mongodb.net/')
 #     db = client['Giftopia']
 #     collection = db['AiProduct']
     
-#     # تحويل DataFrame إلى قائمة من القواميس
 #     data_dict = sorted_products.to_dict("records")
     
-#     # إدخال البيانات إلى MongoDB
 #     collection.insert_many(data_dict)
 #     print("Data sent to MongoDB successfully")
 
@@ -265,5 +262,4 @@ def webScraping(url , ocr):
 #     df = asyncio.get_event_loop().run_until_complete(process_urls(urls))
 #     handle_data(df)
 
-# # استخدام الكود
 # webScraping('your_url_here')

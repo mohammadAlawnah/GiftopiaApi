@@ -3,7 +3,7 @@ import subcategoryModel from "../../../DB/model/subcategory.js";
 import cloudinary from "../../utils/clodinary.js";
 import slugify from "slugify";
 
-export const create = async (req, res) => {
+export const create = async(req, res) => {
   const { categorieId } = req.body;
 
   const categorie = await categoryModel.findById(categorieId);
@@ -98,6 +98,7 @@ export const updateCategory = async (req, res) => {
   await categorie.save();
   return res.json({ message: "succesess", categorie });
 };
+
 //Rajaa Ayyash
 export const destroy = async (req, res) => {
   const categorie = await categoryModel.findByIdAndDelete(req.params.id);
