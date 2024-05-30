@@ -60,7 +60,7 @@ export const create = async(req,res)=>{
     return res.status(201).json({message : 'success',product})
 }
 
-<<<<<<< HEAD
+
 //this function is implemented by Muawiya ismail
 export const getProductById = async(req,res)=>{
     const { id } = req.params;
@@ -69,12 +69,11 @@ export const getProductById = async(req,res)=>{
         return res.status(404).json({ message: "Product not found" });
     }
     return res.status(201).json({message: product});
-}//--<
-=======
+}
+
 export const getAllProducts = async (req,res)=>{
     const products = await productModel.find().select("_id name stock price finalPrice mainImage")
     .populate('categoryId','name')
     .populate('subcategoryId', 'name');
     return res.json(products)
 }
->>>>>>> main
