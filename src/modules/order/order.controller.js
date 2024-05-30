@@ -1,21 +1,22 @@
 import orderModel from "../../../DB/model/Order.model.js";
-
-export const DisplayTraking = async (req, res) => {
+//This code was created by Rajaa
+export const DisplayTracking = async (req, res) => {
   try {
     const orders = await orderModel.findOne({ userId: req.user._id });
     console.log(orders);
-    return res.json({ message: "succes", orders });
+    return res.json({ message: "success", orders });
   } catch (error) {
     return res.json({ message: "error", error: error.stack });
   }
 };
-
-export const addTraking = async (req, res) => {
+//This code was created by Rajaa
+export const addTracking = async (req, res) => {
   try {
-    const { product } = req.params;
+    const product = req.user.product;  
     const { status, timeRemaining, totalPrice } = req.body;
+
     const order = await orderModel.create({
-      userId: req.user._id,
+      userId: req.user._id,  
       orderTracking: [
         {
           productTracking: {
@@ -27,31 +28,47 @@ export const addTraking = async (req, res) => {
       ],
       totalPrice: totalPrice,
     });
-    return res.json({ message: "succes", order });
+
+    return res.json({ message: "success", order });
   } catch (error) {
     return res.json({ message: "error", error: error.stack });
   }
 };
 
+//This code was created by Rajaa
 export const editStatus = async (req, res) => {
   try {
     const { status, timeRemaining } = req.body;
+    const product = req.user.product;  
+
     const order = await orderModel.updateOne(
-      { product: req._product },
-      { status, timeRemaining }
+      { product: product }, 
+      { 
+        $set: {
+          'orderTracking.$[elem].productTracking.status': status,
+          'orderTracking.$[elem].productTracking.timeRemaining': timeRemaining
+        }
+      },
+      {
+        arrayFilters: [{ 'elem.productTracking.product': product }]
+      }
     );
-    return res.json({ message: "succes", order });
+
+    return res.json({ message: "success", order });
   } catch (error) {
     return res.json({ message: "error", error: error.stack });
   }
 };
 
-export const deleteTraking = async (req, res) => {
+//This code was created by Rajaa
+export const deleteTracking = async (req, res) => {
   try {
-    const { product } = req.params;
-    const traking = await orderModel.deleteOne({ _product: product });
-    return res.json({ message: "succes", traking });
+    const product = req.user.product; 
+    const tracking = await orderModel.deleteOne({ product: product }); 
+    return res.json({ message: "success", tracking });
   } catch (error) {
     return res.json({ message: "error", error: error.stack });
   }
 };
+
+
