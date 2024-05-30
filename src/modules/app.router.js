@@ -13,7 +13,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import AiProductModel from '../../DB/model/Aiproduct.js';
 import searshGiftRouter from './searchGift/SearshGift.router.js'
-
+import OrderRouter from './order/order.router.js'
+import CouponRouter from './copoun/coupon.router.js'
 // تحويل import.meta.url إلى مسار الملف الحالي
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,6 +39,8 @@ export const initApp = (app,express)=>{
     app.use('/cart',cartRouter)
     app.use('/webProduct',aiProductRouter)
     app.use('/searchGift',searshGiftRouter)
+    app.use('/order',OrderRouter)
+    app.use('/coupon',CouponRouter)
     
 
 
