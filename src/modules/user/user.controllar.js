@@ -60,9 +60,16 @@ export const editPassword =async(req,res)=>{
 }
 
 export const updateEmail =async(req,res)=>{
-   const {Email} = req.body;
- const user =await userModel.updateOne({_id:req.user._id},{Email})
- return res.json({message:'update email has been sucesed'})
+   const {currentEmail, newEmail, } = req.body;
+   const token = req.headers.authorization.split(' ')[1];
+   const decodedToken = jwt.verify(token,process.env.LOGING_GIFTOPIA)
+   const user = await userModel.findOne({email:decodedToken.email});
+   console.log(user)
+   if(user.email === currentEmail){
+    await userModel.updateOne({_id: user._id},{email: newEmail})
+    return res.json({message:'update email has been succeeded'})
+   }
+   return res.json({message:'You entered a wrong email'})
 }
 
 export const editInformation =async(req,res)=>{
