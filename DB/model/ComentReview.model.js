@@ -1,3 +1,4 @@
+// This code is written by Reema Kusa
 import mongoose, { Types, model } from "mongoose";
 
 const {Schema} = mongoose;
@@ -7,6 +8,11 @@ const CommentsAndReviewSchema = new Schema({
     userId : {
         type : Types.ObjectId,
         ref : 'User',
+    },
+
+    commentAndReviewId : {
+        type : Types.ObjectId,
+        ref : 'Comment',
     },
 
     userName : {

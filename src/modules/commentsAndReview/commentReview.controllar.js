@@ -24,7 +24,8 @@ export const addCommentAndReview = async (req, res) => {
 export const displayCommentAndReview = async (req, res) => {
 
     try {
-        const commentReview = await commentAndReviewModel.findOne({ userId: req.user._id, userName: req.userName });
+        const commentAndReviewId = req.params.commentAndReviewId; 
+        const commentReview = await commentAndReviewModel.findOne({  _id: commentAndReviewId, userId: req.user._id, userName: req.userName });
 
         if (commentReview) {
             return res.json({ message: "Comment and review found", commentReview });
@@ -37,17 +38,18 @@ export const displayCommentAndReview = async (req, res) => {
 
 }
 
-// Function to update comment and review (ReemaKusa)
+// Function to update comment and review (ReemaKusa) 
 export const updateCommentAndReview = async (req, res) => {
-
     try {
         const { comment, review } = req.body;
-        const upcommentReview = await commentAndReviewModel.updateOne({ userId: req.user._id }, { comment, review })
+        const commentAndReviewId = req.params.commentAndReviewId; 
 
-        if (upcommentReview) {
-            return res.json({ message: "Comment and review updated successfully", commentReview: upcommentReview });
-        } else {
+        const upcommentReview = await commentAndReviewModel.updateOne({ _id: commentAndReviewId, userId: req.user._id },{ comment, review });
+
+        if (upcommentReview.nModified === 0) {
             return res.status(404).json({ message: "Comment and review not found" });
+        } else {
+            return res.json({ message: "Comment and review updated successfully" });
         }
     } catch (error) {
         return res.status(500).json({ error: "Server error" });
@@ -58,11 +60,12 @@ export const updateCommentAndReview = async (req, res) => {
 export const deleteCommentAndReview = async (req, res) => {
 
     try {
-        const { comment, review } = req.body;
+
         const id = req.user._id;
         //const id = req.user_id;
+        const commentAndReviewId = req.params.commentAndReviewId; 
 
-        const deleteCommentAndReview = await commentAndReviewModel.deleteOne({ userId: id });
+        const deleteCommentAndReview = await commentAndReviewModel.deleteOne({ _id: commentAndReviewId, userId: req.user._id });
 
         if (deleteCommentAndReview.deletedCount > 0) {
             return res.json({ message: "Comment and review deleted successfully" });
@@ -70,6 +73,7 @@ export const deleteCommentAndReview = async (req, res) => {
             return res.status(404).json({ message: "Comment and review not found" });
         }
     } catch (error) {
+
         return res.status(500).json({ error: "Server error" });
     }
 }

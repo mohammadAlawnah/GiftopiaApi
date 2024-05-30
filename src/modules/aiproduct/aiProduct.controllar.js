@@ -24,9 +24,10 @@ export const addProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
 
     try {
-        //const { title, description, price, occasion, imageUrl, sourceUrl } = req.body;
+
         const id = req.user._id;
-        const deleteProduct = await productModel.deleteOne({ userId: id });
+        const productId = req.params.productId;
+        const deleteProduct = await productModel.deleteOne({ userId: id , _id: productId });
 
         if (deleteProduct.deletedCount > 0) {
             return res.json({ message: "Product deleted successfully" });
@@ -43,8 +44,8 @@ export const editProduct = async (req, res) => {
     
     try {
         const { title, description, price, occasion, imageUrl, sourceUrl } = req.body;
-
-        const updateproduct = await productModel.updateOne({ userId: req.user._id }, { title, description, price, occasion, imageUrl, sourceUrl })
+        const productId = req.params.productId;
+        const updateproduct = await productModel.updateOne({ userId: req.user._id , _id: productId }, { title, description, price, occasion, imageUrl, sourceUrl })
 
         if (updateproduct) {
             return res.json({ message: "Product updated successfully", product: updateproduct });

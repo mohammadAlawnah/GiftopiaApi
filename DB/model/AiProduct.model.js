@@ -1,3 +1,4 @@
+// This code is written by Reema Kusa
 import mongoose, { Types, model } from "mongoose";
 const {Schema} = mongoose;
 const ProductSchwma = new Schema({
@@ -6,14 +7,22 @@ const ProductSchwma = new Schema({
         type : Types.ObjectId,
         ref:'User',
     },
+
+    productId : {
+        type : Types.ObjectId,
+        ref:'Product',
+    },
+
     title : {
         type : String,
         require : true,
     },
+
     description : {
         type : String,
         require : true,
     },
+
     price :{
         type : Number,
         require : true,
@@ -23,10 +32,12 @@ const ProductSchwma = new Schema({
         type : String,
         require : true,
     },
+
     imageUrl  : {
         type : String,
         require : true,
     },
+    
     sourceUrl : {
         type : String,
         require : true,

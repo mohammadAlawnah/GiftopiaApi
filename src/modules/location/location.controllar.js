@@ -23,7 +23,8 @@ export const addlocation=async(req,res)=>{
 export const displayLocation = async(req,res)=>{
 
     try {
-        const location = await locationModel.findOne({ userId: req.user._id });
+        const locationId = req.params.locationId;
+        const location = await locationModel.findOne({ userId: req.user._id ,  _id: locationId });
 
         if (location) {
             return res.json({ message: "Location found", location });
@@ -40,8 +41,9 @@ export const updateLocation = async(req,res)=>{
 
     try {
         const { country, city, street } = req.body;
-
-        const uplocation = await locationModel.updateOne({userId:req.user._id},{ country, city, street})
+        const locationId = req.params.locationId;
+        
+        const uplocation = await locationModel.updateOne({userId:req.user._id,  _id: locationId },{ country, city, street})
 
         if (uplocation) {
             return res.json({ message: "Location updated successfully", location: uplocation });
