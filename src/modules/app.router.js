@@ -5,11 +5,8 @@ import locationRouter from './location/location.router.js'
 import categoryRouter from './category/category.router.js'
 import subcategorie from './subcategory/subcategory.router.js'
 import productRouter from './product/product.router.js'
-<<<<<<< HEAD
 import cartRouter from './cart/cart.router.js'
-=======
 import aiProductRouter from './aiProduct/AiProduct.router.js'
->>>>>>> main
 import cors from 'cors'
 import { spawn } from 'child_process';
 import path from 'path';
@@ -38,9 +35,7 @@ export const initApp = (app,express)=>{
     app.use('/category',categoryRouter)
     app.use('/subcategorie',subcategorie)
     app.use('/product',productRouter)
-<<<<<<< HEAD
     app.use('/cart',cartRouter)
-=======
     app.use('/webProduct',aiProductRouter)
     app.use('/searchGift',searshGiftRouter)
     
@@ -115,7 +110,6 @@ export const initApp = (app,express)=>{
     })
 
 
->>>>>>> main
 
 
     // app.use('/user',userRouter)
