@@ -59,3 +59,10 @@ export const create = async(req,res)=>{
 
     return res.status(201).json({message : 'success',product})
 }
+
+export const getAllProducts = async (req,res)=>{
+    const products = await productModel.find().select("_id name stock price finalPrice mainImage")
+    .populate('categoryId','name')
+    .populate('subcategoryId', 'name');
+    return res.json(products)
+}
