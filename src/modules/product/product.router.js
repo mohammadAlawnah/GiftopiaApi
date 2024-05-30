@@ -11,8 +11,12 @@ router.post('/',auth(endPoint.create),fileUpload(fileType.image).fields([
     {name:'subImages',maxCount:5},
 ]),productControllar.create);
 
+<<<<<<< HEAD
 //this code is implemented by Muawiya ismail -->
 router.get('/:id',auth(endPoint.get),productControllar.getProductById);
 //--<
+=======
+router.get('/getAllProducts',productControllar.getAllProducts);
+>>>>>>> main
 
 export default router
