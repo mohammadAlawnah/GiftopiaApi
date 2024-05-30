@@ -2,7 +2,7 @@ import { connectDB } from '../../DB/connection.js';
 import authRouter from './auth/auth.router.js'
 import userRouter from './user/user.router.js'
 import locationRouter from './location/location.router.js'
-import orderRouter from './order/order.router.js'
+import TrackingRouter from './tracking/Tracking.router.js'
 import cors from 'cors'
 
 export const initApp = (app,express)=>{
@@ -20,7 +20,7 @@ export const initApp = (app,express)=>{
     app.use('/auth',authRouter)
     app.use('/user',userRouter)
     app.use('/location',locationRouter)
-    app.use('/order',orderRouter)
+    app.use('/Tracking',TrackingRouter)
 
 
     // app.use('/user',userRouter)
